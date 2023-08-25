@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+</head>
+<body>
+    <h1>Download do Vídeo</h1>
+    <p>Nome do vídeo: {{ title }}</p>
+    <form action="/download" method="POST">
+        <input type="hidden" name="video_link" value="{{ video_link }}">
+        <label for="download_path">Escolha o local para salvar o arquivo:</label>
+        <input type="text" name="download_path" id="download_path" placeholder="Caminho do arquivo">
+        <button type="button" onclick="downloadVideo()">Download</button>
+    </form>
+
+    <script>
+        function downloadVideo() {
+            var downloadPath = document.getElementById('download_path').value;
+            var videoLink = '{{ video_link }}';
+            window.location.href = '/download?video_link=' + encodeURIComponent(videoLink) + '&download_path=' + encodeURIComponent(downloadPath);
+        }
+    </script>
+</body>
+</html>
